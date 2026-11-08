@@ -1,0 +1,16 @@
+[package]
+name = "implode-wasm"
+version = "1.0.0"
+edition = "2021"
+description = "A WebAssembly port of Sugar Labs Implode"
+license = "GPL-2.0-or-later"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

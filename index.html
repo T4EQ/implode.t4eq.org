@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#242424">
+  <title>Implode</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar" aria-label="Game controls">
+    <div class="brand" title="Implode"><span class="brand-blocks" aria-hidden="true">▦</span><span>Implode</span></div>
+    <div class="divider"></div>
+    <button id="new" title="New puzzle" aria-label="New puzzle"><span aria-hidden="true">✦</span><small>New</small></button>
+    <button id="replay" title="Replay this puzzle" aria-label="Replay this puzzle"><span aria-hidden="true">◀◀</span><small>Replay</small></button>
+    <div class="divider"></div>
+    <button id="undo" title="Undo (Ctrl+Z)" aria-label="Undo"><span aria-hidden="true">↶</span><small>Undo</small></button>
+    <button id="redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo"><span aria-hidden="true">↷</span><small>Redo</small></button>
+    <div class="divider optional"></div>
+    <div class="levels" role="radiogroup" aria-label="Difficulty">
+      <button data-level="0" role="radio" title="Easy"><span class="grid-icon g-easy" aria-hidden="true"></span><small>Easy</small></button>
+      <button data-level="1" role="radio" title="Medium"><span class="grid-icon g-medium" aria-hidden="true"></span><small>Medium</small></button>
+      <button data-level="2" role="radio" title="Hard"><span class="grid-icon g-hard" aria-hidden="true"></span><small>Hard</small></button>
+    </div>
+    <div class="divider optional"></div>
+    <button id="help" title="How to play" aria-label="How to play"><span aria-hidden="true">?</span><small>Help</small></button>
+    <div class="spacer"></div>
+    <div id="move-count" aria-live="polite">0 moves</div>
+  </header>
+
+  <main id="game-wrap">
+    <canvas id="game" tabindex="0" aria-label="Implode game board. Use arrow keys to move and Enter to remove a group."></canvas>
+    <div id="loading">Loading WebAssembly…</div>
+    <section id="win" class="overlay" hidden>
+      <div class="face" aria-hidden="true">☺</div>
+      <h1>Board cleared!</h1>
+      <p id="win-moves"></p>
+      <button id="win-new">Play another</button>
+    </section>
+  </main>
+
+  <aside id="stuck" hidden>
+    <span><strong>Stuck?</strong> You can still solve the puzzle.</span>
+    <button id="stuck-undo">↶ Undo a move</button>
+  </aside>
+
+  <dialog id="help-dialog">
+    <button class="close" aria-label="Close help">×</button>
+    <h1>How to play Implode</h1>
+    <div class="help-demo" aria-hidden="true"><i></i><i></i><i></i><b>→</b><span>✨</span></div>
+    <p>Clear the board by removing groups of <strong>three or more connected blocks</strong> of the same color.</p>
+    <p>Blocks fall downward after each move, and empty columns slide left. Plan ahead so you do not leave isolated blocks.</p>
+    <ul>
+      <li><strong>Mouse or touch:</strong> select a block to remove its group.</li>
+      <li><strong>Keyboard:</strong> use arrow keys to move, then Enter or Space.</li>
+      <li>Use Undo, Replay, or choose a new difficulty at any time.</li>
+    </ul>
+    <section class="credits" aria-labelledby="credits-title">
+      <h2 id="credits-title">Credits</h2>
+      <p>Based on <a href="https://github.com/sugarlabs/implode-activity" target="_blank" rel="noopener noreferrer">Implode Activity</a> by Joseph C. Lee and Sugar Labs contributors.</p>
+      <p>This browser edition uses a Rust and WebAssembly game engine and is released under the <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" rel="noopener noreferrer">GNU GPL v2 or later</a>.</p>
+    </section>
+    <button class="primary close-help">Start playing</button>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

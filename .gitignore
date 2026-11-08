@@ -1,0 +1,4 @@
+target/
+dist/
+game.wasm
+.DS_Store
